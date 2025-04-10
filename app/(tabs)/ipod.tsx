@@ -7,7 +7,7 @@ import { TextToSpeech } from '@/components/TextToSpeech';
 export default function IPodScreen() {
   const router = useRouter();
   const songInfo = "Now playing Song Title by Artist Name";
-  const testSpeech = "here is an example I am your host Peach!";
+  const testSpeech = "Welcome to Peach Radio, your home for all things music! I am your host Peach. We have a message from Bob from Kennesaw State!";
 
   return (
     <ThemedView style={styles.container}>
