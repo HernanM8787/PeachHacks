@@ -1,87 +1,115 @@
-import { StyleSheet, View, Image, Pressable } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Image, Pressable, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { TextToSpeech } from '@/components/TextToSpeech';
+import { SpotifyInfo } from '@/components/SpotifyInfo';
+import { connectSpotify } from '@/services/spotify';
 
 export default function IPodScreen() {
   const router = useRouter();
   const songInfo = "Now playing Song Title by Artist Name";
   const testSpeech = "Welcome to Peach Radio, your home for all things music! I am your host Peach. We have a message from Bob from Kennesaw State!";
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleConnectSpotify = async () => {
+    try {
+      setIsConnecting(true);
+      setError(null);
+      await connectSpotify();
+      // If we get here, connection was successful
+    } catch (err) {
+      console.error('Failed to connect to Spotify:', err);
+      setError('Failed to connect to Spotify. Please try again.');
+    } finally {
+      setIsConnecting(false);
+    }
+  };
 
   return (
-    <ThemedView style={styles.container}>
-      {/* Test TTS Button - Moved above iPod */}
-      <View style={styles.testContainer}>
-        <ThemedText style={styles.testLabel}>Test Voice:</ThemedText>
-        <TextToSpeech text={testSpeech} />
-      </View>
-      
-      {/* iPod Body */}
-      <View style={styles.ipodBody}>
-        {/* Screen */}
-        <View style={styles.screen}>
-          <ThemedText style={styles.nowPlaying}>Now Playing</ThemedText>
-          <ThemedText style={styles.songTitle}>Song Title</ThemedText>
-          <ThemedText style={styles.artist}>Artist Name</ThemedText>
+    <ScrollView style={styles.container}>
+      <ThemedView style={styles.content}>
+        <ThemedText style={styles.title}>iPod</ThemedText>
+        
+        <ThemedView style={styles.section}>
+          <ThemedText style={styles.sectionTitle}>Spotify Playlists</ThemedText>
           
-          {/* Album Art Placeholder */}
-          <View style={styles.albumArt}>
-            <ThemedText style={styles.albumArtText}>Album Art</ThemedText>
-          </View>
-          
-          {/* Progress Bar */}
-          <View style={styles.progressContainer}>
-            <View style={styles.progressBar}>
-              <View style={styles.progress} />
-            </View>
-            <View style={styles.timeContainer}>
-              <ThemedText style={styles.timeText}>0:00</ThemedText>
-              <ThemedText style={styles.timeText}>3:45</ThemedText>
-            </View>
-          </View>
-
-          {/* Text to Speech Button */}
-          <TextToSpeech text={songInfo} />
-        </View>
-
-        {/* Click Wheel */}
-        <View style={styles.clickWheel}>
-          <View style={styles.clickWheelInner}>
-            <View style={styles.clickWheelCenter} />
-          </View>
-        </View>
-
-        {/* Control Buttons */}
-        <View style={styles.controls}>
-          <Pressable style={styles.controlButton}>
-            <ThemedText style={styles.controlText}>⏮</ThemedText>
-          </Pressable>
-          <Pressable style={[styles.controlButton, styles.playButton]}>
-            <ThemedText style={styles.controlText}>▶</ThemedText>
-          </Pressable>
-          <Pressable style={styles.controlButton}>
-            <ThemedText style={styles.controlText}>⏭</ThemedText>
-          </Pressable>
-        </View>
-      </View>
-
-      {/* Menu Button */}
-      <Pressable 
-        style={styles.menuButton}
-        onPress={() => router.back()}>
-        <ThemedText style={styles.menuButtonText}>Menu</ThemedText>
-      </Pressable>
-    </ThemedView>
+          {isConnecting ? (
+            <ThemedView style={styles.loadingContainer}>
+              <ActivityIndicator size="large" color="#1DB954" />
+              <ThemedText style={styles.loadingText}>Connecting to Spotify...</ThemedText>
+            </ThemedView>
+          ) : error ? (
+            <ThemedView style={styles.errorContainer}>
+              <ThemedText style={styles.errorText}>{error}</ThemedText>
+              <TouchableOpacity 
+                style={styles.retryButton}
+                onPress={handleConnectSpotify}
+              >
+                <ThemedText style={styles.retryButtonText}>Retry</ThemedText>
+              </TouchableOpacity>
+            </ThemedView>
+          ) : (
+            <SpotifyInfo onConnect={handleConnectSpotify} />
+          )}
+        </ThemedView>
+      </ThemedView>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  content: {
+    flex: 1,
+    padding: 20,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  section: {
+    marginBottom: 20,
+    padding: 15,
+    borderRadius: 10,
+    backgroundColor: 'rgba(29, 185, 84, 0.1)', // Spotify green with transparency
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#1DB954', // Spotify green
+  },
+  loadingContainer: {
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#f5f5f5',
+    padding: 20,
+  },
+  loadingText: {
+    marginTop: 10,
+  },
+  errorContainer: {
+    alignItems: 'center',
+    padding: 20,
+  },
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  retryButton: {
+    backgroundColor: '#1DB954',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
+  },
+  retryButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
   ipodBody: {
     width: '90%',
@@ -233,5 +261,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
     marginBottom: 10,
+  },
+  testButton: {
+    padding: 10,
+    backgroundColor: '#1DB954', // Spotify green
+    borderRadius: 8,
+  },
+  spotifySection: {
+    width: '100%',
+    marginTop: 20,
   },
 }); 
