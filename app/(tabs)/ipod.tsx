@@ -62,17 +62,11 @@ export default function IPodScreen() {
   const [error, setError] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const currentSongIndexRef = useRef(0); // Add ref to track current song index
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [position, setPosition] = useState(0);
   const soundRef = useRef<Audio.Sound | null>(null);
   const progressInterval = useRef<NodeJS.Timeout | null>(null);
-
-  // Update the ref whenever currentSongIndex changes
-  useEffect(() => {
-    currentSongIndexRef.current = currentSongIndex;
-  }, [currentSongIndex]);
 
   const handleConnectSpotify = async () => {
     try {
@@ -129,15 +123,25 @@ export default function IPodScreen() {
 
   const loadSong = async (index: number) => {
     try {
+      // Unload previous song if exists
       if (soundRef.current) {
         await soundRef.current.unloadAsync();
       }
+      if (progressInterval.current) {
+        clearInterval(progressInterval.current);
+      }
+
+      // Create new sound object with initial status
       const { sound } = await Audio.Sound.createAsync(
         SONGS[index].audioFile,
         { progressUpdateIntervalMillis: 1000 },
         onPlaybackStatusUpdate
       );
+      
       soundRef.current = sound;
+      setProgress(0);
+      setPosition(0);
+      setDuration(0);
     } catch (error) {
       console.error('Error loading song:', error);
     }
@@ -151,21 +155,17 @@ export default function IPodScreen() {
 
       // Check if the song just finished
       if (status.didJustFinish) {
-        // Use the ref to get the current song index
-        const songIndex = currentSongIndexRef.current;
-        const currentSong = SONGS[songIndex];
-        console.log('Song finished:', currentSong.title);
-        
+        console.log('Song finished:', SONGS[currentSongIndex].title);
         // If it's the final Peach Radio song, go to home
-        if (currentSong.isFinal) {
+        if (SONGS[currentSongIndex].isFinal) {
           console.log('Final Peach Radio song, going to home');
           router.replace('/(tabs)');
-          return;
+          return; // Add return to prevent further execution
         } 
         // If it's a regular Peach Radio song, play the next song
-        else if (currentSong.title === 'Peach Radio') {
+        else if (SONGS[currentSongIndex].title === 'Peach Radio') {
           console.log('Regular Peach Radio song, playing next');
-          const nextIndex = songIndex + 1;
+          const nextIndex = currentSongIndex + 1;
           setCurrentSongIndex(nextIndex);
           await loadSong(nextIndex);
           await soundRef.current?.playAsync();
