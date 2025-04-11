@@ -42,7 +42,7 @@ const SPOTIFY_CONFIG = {
   clientId: '8b814b3191ba4289b066b4d9b903297f',
   clientSecret: 'da632778e8644a7386c8741b9c077589',
   redirectURLs: [
-    'exp://10.201.129.144:19000'
+    'peachradio://spotify-auth'
   ],
   scopes: [
     'user-read-private',

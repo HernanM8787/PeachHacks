@@ -1,0 +1,412 @@
+
+/* Add font files for Luckiest Guy */
+@font-face {
+  font-family: 'Luckiest Guy';
+  src: url('fonts/luckiest-guy.woff2') format('woff2'),
+       url('fonts/luckiest-guy.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Add font files for M PLUS 1p */
+@font-face {
+  font-family: 'M PLUS 1p';
+  src: url('fonts/m-plus-1p.woff2') format('woff2'),
+       url('fonts/m-plus-1p.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  --font-family-luckiest-guy: 'Luckiest Guy', sans-serif;
+  --font-family-roboto: 'Roboto', sans-serif;
+  --font-family-m-plus-1p: 'M PLUS 1p', sans-serif;
+  --#D9D9D9: rgba(215, 92, 140, 1);
+  --#D9D9D9: rgba(232, 149, 170, 1);
+  --#D9D9D9: rgba(230, 153, 183, 1);
+  --#D9D9D9: rgba(237, 170, 187, 1);
+  --#D9D9D9: rgba(184, 142, 188, 1);
+  --#D9D9D9: rgba(224, 107, 136, 1);
+  --#D9D9D9: rgba(220, 167, 167, 1);
+  --#D9D9D9: rgba(212, 60, 17, 1);
+  --#D9D9D9: rgba(220, 88, 48, 1);
+  --text-rgb-85-61-88: rgba(85, 61, 88, 1);
+  --text-rgb-86-61-88: rgba(86, 61, 88, 1);
+  --text-black: rgba(0, 0, 0, 1);
+  --text-rgb-255-224-224: rgba(255, 224, 224, 1);
+}
+
+.text-rgb-85-61-88 {
+  color: var(--text-rgb-85-61-88);
+}
+
+.text-rgb-86-61-88 {
+  color: var(--text-rgb-86-61-88);
+}
+
+.text-black {
+  color: var(--text-black);
+}
+
+.text-rgb-255-224-224 {
+  color: var(--text-rgb-255-224-224);
+}
+
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.peach-4 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  width: 100%;
+  height: auto;
+}
+
+.frame-1-3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
+.text-6 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.5);
+  font-family: var(--font-family-luckiest-guy);
+  font-weight: normal;
+  font-size: 40px;
+  letter-spacing: 4%;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-rgb-85-61-88);
+}
+
+.frame-2-5 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
+.frame-3-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 0px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
+.text-10 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-family: var(--font-family-sf-pro);
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 22px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-rgb-86-61-88);
+}
+
+.time-9 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 0px 6px 0px 16px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 34.57711442786069%;
+}
+
+.node-11 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  width: 30.845771144278604%;
+}
+
+.cellular-connection-13 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  fill: rgba(86, 61, 88, 1);
+  border: none;
+  outline: none;
+}
+
+.wifi-14 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  fill: rgba(86, 61, 88, 1);
+  border: none;
+  outline: none;
+}
+
+.border-16 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  border: 1px solid rgba(86, 61, 88, 1);
+  border-radius: 4.300000190734863px;
+  opacity: 0.3499999940395355;
+}
+
+.cap-17 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  opacity: 0.4000000059604645;
+  fill: rgba(86, 61, 88, 1);
+  border: none;
+  outline: none;
+}
+
+.capacity-18 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  background-color: rgba(86, 61, 88, 1);
+  border-radius: 2.5px;
+}
+
+.battery-15 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
+.levels-12 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  padding: 0px 16px 0px 6px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 34.57711442786069%;
+}
+
+.frame-8 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 134px;
+  padding: 0px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  width: 100%;
+}
+
+.status-bar-iphone-7 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 21px 0px 0px 0px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  width: 91.36363636363637%;
+  background-color: rgba(250, 202, 214, 1);
+}
+
+.spotify-21 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  width: 100%;
+  height: auto;
+}
+
+.text-22 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-family: var(--font-family-roboto);
+  font-weight: 300;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
+}
+
+.button-20 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 44px 10px 44px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  box-shadow: 0px 4px 10.699999809265137px 0px rgba(0,0,0,0.5);
+  background-color: rgba(242, 237, 237, 1);
+  border-radius: 15px;
+}
+
+.text-23 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  opacity: 0.5400000214576721;
+  font-family: var(--font-family-roboto);
+  font-weight: 300;
+  font-size: 20px;
+  text-decoration: underline;
+  text-transform: none;
+  color: var(--text-black);
+}
+
+.text-24 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  opacity: 0.5400000214576721;
+  font-family: var(--font-family-roboto);
+  font-weight: 300;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
+}
+
+.text-26 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  opacity: 0.6399999856948853;
+  font-family: var(--font-family-roboto);
+  font-weight: 300;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
+}
+
+.frame-26-25 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.5);
+  background-color: rgba(242, 237, 237, 1);
+  border-radius: 15px;
+}
+
+.text-28 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  opacity: 0.6399999856948853;
+  font-family: var(--font-family-roboto);
+  font-weight: 300;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
+}
+
+.frame-27-27 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.5);
+  background-color: rgba(242, 237, 237, 1);
+  border-radius: 15px;
+}
+
+.spotify-button-19 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.5);
+  background-color: rgba(255, 224, 224, 1);
+  border-radius: 17px;
+}
+
+.text-30 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-family: var(--font-family-m-plus-1p);
+  font-weight: 500;
+  font-size: 32px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-rgb-255-224-224);
+}
+
+.frame-29-29 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 32px 10px 32px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  box-shadow: 0px 4px 7.599999904632568px 0px rgba(0,0,0,0.5);
+  background-color: rgba(220, 88, 48, 1);
+  border-radius: 9px;
+}
+
+.home-page-1 {
+@media (max-width: 1440px) {
+  .home-page-1 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-page-1 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  background-color: rgba(250, 202, 214, 1);
+}
